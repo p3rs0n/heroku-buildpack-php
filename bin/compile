@@ -44,8 +44,6 @@ BP_DIR=$(cd $(dirname $0); cd ..; pwd)
 # convenience functions
 source $BP_DIR/bin/util/common.sh
 
-# Phalcon install
-source $BP_DIR/bin/phalcon.sh
 
 # for extensions that need special treatment
 source $BP_DIR/bin/util/newrelic.sh
@@ -389,3 +387,7 @@ if [[ ! -f "Procfile" ]]; then
     echo "web: $bindir/heroku-$engine-apache2" > Procfile
     notice_inline "No Procfile, using 'web: $bindir/heroku-$engine-apache2'."
 fi
+
+
+# Phalcon install
+source $BP_DIR/bin/phalcon.sh
