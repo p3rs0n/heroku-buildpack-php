@@ -44,6 +44,9 @@ BP_DIR=$(cd $(dirname $0); cd ..; pwd)
 # convenience functions
 source $BP_DIR/bin/util/common.sh
 
+# Phalcon install
+source $BP_DIR/bin/phalcon.sh
+
 # for extensions that need special treatment
 source $BP_DIR/bin/util/newrelic.sh
 source $BP_DIR/bin/util/blackfire.sh
