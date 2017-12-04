@@ -9,7 +9,7 @@ set -o pipefail
 # fail harder
 set -eux
 
-DEFAULT_VERSION="7.0.22"
+DEFAULT_VERSION="7.0.26"
 dep_version=${VERSION:-$DEFAULT_VERSION}
 dep_dirname=php-${dep_version}
 dep_archive_name=${dep_dirname}.tar.gz
