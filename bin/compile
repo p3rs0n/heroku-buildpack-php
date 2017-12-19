@@ -273,7 +273,7 @@ if [[ -f "composer.phar" ]]; then
     notice_inline "Using '/composer.phar' to install dependencies."
 else
 	status "Downloading composer..."
-    curl --silent --location "https://getcomposer.org/installer" > "$BUILD_DIR/.heroku/php"
+    curl --silent --location "https://getcomposer.org/installer" > "$BUILD_DIR/.heroku/php/composer"
     composer() {
         $engine `which composer` "$@"
     }
