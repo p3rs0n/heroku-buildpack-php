@@ -299,7 +299,7 @@ if [[ -n "$COMPOSER_GITHUB_OAUTH_TOKEN" ]]; then
 else
     # don't forget to remove any stored key if it's gone from the env
     composer config -g --unset github-oauth.github.com &> /dev/null # redirect outdated version warnings (Composer sends those to STDOUT instead of STDERR)
-    
+
 fi
 # no need for the token to stay around in the env
 unset COMPOSER_GITHUB_OAUTH_TOKEN
@@ -310,7 +310,7 @@ composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction |
 composer show --installed heroku/heroku-buildpack-php &> /dev/null && error "Your composer.json requires 'heroku/heroku-buildpack-php'.
 This package may only be used as a dependency in 'require-dev'!"
 
-if cat composer.json | python -c 'import sys,json; sys.exit("compile" not in json.load(sys.stdin).get("scripts", {}));'; then
+if cat composer.json | python -c 'import sys,json; sys.exit(\"compile\" not in json.load(sys.stdin).get(\"scripts\", {}));'; then
     status "Running 'composer compile'..."
     composer run-script --no-dev --no-interaction compile | indent
 fi
