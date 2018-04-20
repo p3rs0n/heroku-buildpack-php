@@ -67,8 +67,6 @@ S3_URL_PHP="https://lang-php.s3.amazonaws.com/dist-${STACK}-stable"
 S3_URL="https://lang-php.s3.amazonaws.com/dist-${STACK}-master"
 RTVS_URL="http://php-runtime-version-selector${RTVS_URL:-}.herokuapp.com"
 
-echo "${RTVS_URL}/resolve?default_runtime=php"
-
 cd $BUILD_DIR
 
 if [[ -s "composer.json" ]]; then
@@ -265,22 +263,13 @@ fi
 status "Installing dependencies..."
 
 # check if we should use a composer.phar version bundled with the project
-if [[ -f "composer.phar" ]]; then
-    [[ -x "composer.phar" ]] || error "File '/composer.phar' isn't executable; please 'chmod +x'!"
-    $engine_r 'new Phar("composer.phar");' &> /dev/null || error "File '/composer.phar' is not a valid PHAR archive!"
-    composer() {
-        $engine composer.phar "$@"
-    }
-    export -f composer
-    composer --version 2>&1 | grep "^Composer version" > /dev/null || error "File '/composer.phar' is not a Composer executable!"
-    notice_inline "Using '/composer.phar' to install dependencies."
-else
+
     curl --silent --location "$S3_URL/composer.tar.gz" | tar xz -C $BUILD_DIR/.heroku/php
     composer() {
         $engine `which composer` "$@"
     }
     export -f composer
-fi
+
 # echo composer version for info purposes
 # tail to get rid of outdated version warnings (Composer sends those to STDOUT instead of STDERR)
 composer --version 2> /dev/null | tail -n 1 | indent
