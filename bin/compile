@@ -67,6 +67,8 @@ S3_URL_PHP="https://lang-php.s3.amazonaws.com/dist-${STACK}-stable"
 S3_URL="https://lang-php.s3.amazonaws.com/dist-${STACK}-master"
 RTVS_URL="http://php-runtime-version-selector${RTVS_URL:-}.herokuapp.com"
 
+echo "${RTVS_URL}/resolve?default_runtime=php"
+
 cd $BUILD_DIR
 
 if [[ -s "composer.json" ]]; then
@@ -110,8 +112,6 @@ ret["packages"] = sys.stdin.read().splitlines()
 c_json = dict(json.load(open("composer.json"))) # wrap in dict() to prevent simple errors with {} vs []
 ret["json"] = {k: c_json.get(k, None) for k in ["minimum-stability", "prefer-stable"]}
 ret["json"]["platform"] = {k: dict(c_json.get("require", {})).get(k, None) for k in ["php", "hhvm"]} # wrap in dict() to prevent simple errors with {} vs []
-
-echo "${RTVS_URL}/resolve?default_runtime=php"
 
 try:
     c_lock = json.load(open("composer.lock"))
