@@ -110,6 +110,9 @@ ret["packages"] = sys.stdin.read().splitlines()
 c_json = dict(json.load(open("composer.json"))) # wrap in dict() to prevent simple errors with {} vs []
 ret["json"] = {k: c_json.get(k, None) for k in ["minimum-stability", "prefer-stable"]}
 ret["json"]["platform"] = {k: dict(c_json.get("require", {})).get(k, None) for k in ["php", "hhvm"]} # wrap in dict() to prevent simple errors with {} vs []
+
+echo "${RTVS_URL}/resolve?default_runtime=php"
+
 try:
     c_lock = json.load(open("composer.lock"))
     ret["lock"] = {k: c_lock.get(k, None) for k in ["minimum-stability", "prefer-stable", "stability-flags"]}
