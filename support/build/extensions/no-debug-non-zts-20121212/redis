@@ -2,6 +2,8 @@
 # Build Path: /app/.heroku/php/
 # Build Deps: php-5.5.11
 
+echo "-----> REDIS 2"
+
 OUT_PREFIX=$1
 
 # fail hard
@@ -9,7 +11,7 @@ set -o pipefail
 # fail harder
 set -eux
 
-DEFAULT_VERSION="2.2.5"
+DEFAULT_VERSION="4.0.0"
 dep_version=${VERSION:-$DEFAULT_VERSION}
 dep_dirname=redis-${dep_version}
 dep_archive_name=${dep_dirname}.tgz
