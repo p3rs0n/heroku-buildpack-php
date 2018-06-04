@@ -74,7 +74,10 @@ LD_LIBRARY_PATH=${OUT_PREFIX} ./configure \
     --with-sqlite3=shared \
     --with-pdo-sqlite=shared \
     --with-xmlrpc=shared \
-    --with-xsl=shared
+    --with-xsl=shared \
+    --enable-redis-igbinary \
+    --enable-redis-lzf \
+    --with-liblzf=${OUT_PREFIX}
 make -s -j 9
 make install -s
 popd
