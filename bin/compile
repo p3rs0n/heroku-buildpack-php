@@ -198,7 +198,7 @@ if [[ "${PHP_VERSION}" ]]; then
         ext_source="composer.json"
     fi
     for ext in "${!exts[@]}"; do # loop over keys in case the array is empty or else it'll error out
-        echo "----> INSTALL: {exts[$ext]}"
+        echo "----> INSTALL: ${exts[$ext]}"
         install_ext "${exts[$ext]}" $ext_source
     done
     
