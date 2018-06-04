@@ -15,7 +15,12 @@ install_ext () {
         echo "${S3_URL}/extensions/${ext_dir}/${ext}.tar.gz"
 
         if [[ ! -f "$PHP_EXT_DIR/$ext_so" ]]; then
-            curl --silent --location "${S3_URL}/extensions/${ext_dir}/${ext}.tar.gz" | tar xz -C $BUILD_DIR/.heroku/php
+
+            if [[ $ext == "redis"]]; then
+                curl --silent --location "https://lang-php.s3.amazonaws.com/dist-cedar-14-stable/extensions/no-debug-non-zts-20131226/redis-4.0.2.tar.gz" | tar xz -C $BUILD_DIR/.heroku/php
+            else
+                curl --silent --location "${S3_URL}/extensions/${ext_dir}/${ext}.tar.gz" | tar xz -C $BUILD_DIR/.heroku/php
+            fi
             echo "- ${ext} (${reason}; downloaded)" | indent
         else
             echo "- ${ext} (${reason}; bundled)" | indent
