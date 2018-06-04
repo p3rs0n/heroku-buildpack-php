@@ -75,9 +75,13 @@ LD_LIBRARY_PATH=${OUT_PREFIX} ./configure \
     --with-pdo-sqlite=shared \
     --with-xmlrpc=shared \
     --with-xsl=shared \
+    --enable-redis-igbinary \
+    --enable-redis-lzf
 make -s -j 9
 make install -s
 popd
+
+echo echo "-----> PHP DONE"
 
 echo "-----> Preparing PECL..."
 ${OUT_PREFIX}/bin/pecl channel-update pecl.php.net

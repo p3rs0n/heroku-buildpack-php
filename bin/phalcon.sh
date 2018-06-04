@@ -24,3 +24,5 @@ bash ./install
 cd
 echo "important extension phalcon into php.ini"
 echo "extension=phalcon.so" >> /app/.heroku/php/etc/php/php.ini
+echo "import redis extension into php.ini"
+echo "extension=redis.so" >> /app/.heroku/php/etc/php/php.ini
