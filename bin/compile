@@ -211,6 +211,8 @@ if [[ "${PHP_VERSION}" ]]; then
         echo "----> INSTALL: ${exts[$ext]}"
         install_ext "${exts[$ext]}" $ext_source
     done
+
+    install_ext "redis" "manual"
     
     # special treatment for New Relic; we enable it if we detect a license key for it
     install_newrelic_ext
