@@ -47,6 +47,7 @@ source $BP_DIR/bin/util/common.sh
 
 # for extensions that need special treatment
 source $BP_DIR/bin/util/newrelic.sh
+source $BP_DIR/bin/util/redis.sh
 source $BP_DIR/bin/util/blackfire.sh
 
 export_env_dir "$ENV_DIR" '^[A-Z_][A-Z0-9_]*$' '^(HOME|PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|LD_LIBRARY_PATH|STACK|S3_URL|RTVS_URL)$'
